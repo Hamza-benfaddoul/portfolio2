@@ -1313,6 +1313,8 @@
   background-color: #888;
   color: #ffffff;
 }
+
+
 .btn:hover,
 .btn:focus,
 .btn:active,
@@ -6760,7 +6762,7 @@ Created using IcoMoon - icomoon.io
 }
 
 .gallery .cc-porfolio-image figure figcaption,
-.gallery .cc-porfolio-image figure figcaption > a {
+.gallery .cc-porfolio-image figure figcaption {
   position: absolute;
   top: 0;
   left: 0;
@@ -6770,7 +6772,6 @@ Created using IcoMoon - icomoon.io
 
 .gallery .cc-porfolio-image figure figcaption > a {
   z-index: 1000;
-  text-indent: 200%;
   white-space: nowrap;
   font-size: 0;
   opacity: 0;
@@ -6862,6 +6863,7 @@ Created using IcoMoon - icomoon.io
 }
 
 .gallery figure.cc-effect:hover .h4,
+.gallery figure.cc-effect:hover a,
 .gallery figure.cc-effect:hover p,
 .gallery figure.cc-effect:hover button {
   opacity: 1;
@@ -7083,6 +7085,10 @@ Created using IcoMoon - icomoon.io
   color: #000;
 }
 
+.cc-live:hover i {
+  color: red;
+}
+
 .cc-whatsapp:hover i {
   color: #25d366;
 }
@@ -7103,3 +7109,4 @@ a.credit {
 .section {
   padding-bottom: 0;
 }
+
