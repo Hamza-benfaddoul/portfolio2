@@ -1,10 +1,9 @@
 /* ==========================================================================
    Hamza Benfaddoul — portfolio
-   Rounded instrument cards on a plain canvas; section titles sit on the canvas.
-   Two themes share every rule: dark is the default (:root), light overrides the
-   same tokens under :root[data-theme="light"]. Cards are --paper, raised
-   sub-cards --paper-2. The route panel (.hud) stays dark in both themes.
-   Text on yellow/orange highlights is always --dark; text on --ink chips is --on-ink.
+   Dark rounded instrument cards on a near-black canvas; section titles sit on the
+   canvas. Cards are --paper, raised sub-cards --paper-2. Every colour goes through
+   the tokens below. Text on yellow/orange highlights is always --dark; text on
+   --ink chips is --on-ink; text on the accent is --on-accent.
    ========================================================================== */
 
 :root {
@@ -31,7 +30,7 @@
   --dark: #1A1A18;
   --r-card: clamp(20px, 2.4vw, 30px);
   --r-sub: 18px;
-  /* theme-dependent pieces (overridden for the light theme below) */
+  /* supporting pieces */
   --on-ink: #1A1A18;            /* text on cream chips */
   --on-accent: #1A1A18;         /* text on the accent colour */
   --line: #3B3B3E;              /* dividers inside raised sub-cards */
@@ -51,35 +50,6 @@
   --ease: cubic-bezier(.2, .7, .2, 1);
   --dots: radial-gradient(circle at center, rgba(236, 232, 220, .15) 0 1px, transparent 1.45px);
 }
-
-/* light theme: the same cards as warm paper. The route device stays dark on purpose — it is the
-   one instrument on the desk, as in the original notebook. */
-:root[data-theme="light"] {
-  color-scheme: light;
-  --rust: #A9451F;
-  --rust-dk: #8F3A1A;
-  --paper: #F4F1E8;
-  --paper-2: #E9E5D9;
-  --panel: #F4F1E8;
-  --ink: #1A1A18;
-  --body: #4A4842;
-  --muted: #5F5C54;
-  --hair: #D5D0C2;
-  --rule: #8F8A7C;
-  --canvas: #E2DDCF;
-  --on-ink: #F4F1E8;
-  --on-accent: #FFF7EC;
-  --line: #D2CCBD;
-  --neutral: #D8D2C2;
-  --dot: rgba(26, 26, 24, .26);
-  --dots: radial-gradient(circle at center, rgba(26, 26, 24, .2) 0 1px, transparent 1.45px);
-  --edge: rgba(26, 26, 24, .16);
-  --field-focus: #FBF9F3;
-  --plate-filter: grayscale(1) contrast(.95);
-  --h1: #D7C2B0; --h2: #CAA48E; --h3: #C29178; --h4: #B97B5E; --h5: #A8522F; --h6: #A03F19;
-}
-/* a short cross-fade while the theme switches (site.js adds and removes the class) */
-.is-theming, .is-theming *, .is-theming *::before, .is-theming *::after { transition: background-color .25s ease, color .25s ease, border-color .25s ease, fill .25s ease, stroke .25s ease !important; }
 
 /* ---------- base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
@@ -146,7 +116,7 @@ main { display: grid; gap: 10px; }
 .bar__brand { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; padding: 0 22px 0 clamp(20px, 2.6vw, 40px); border-right: 1px solid var(--hair); border-radius: var(--r-card) 0 0 var(--r-card); text-decoration: none; color: var(--ink); }
 .bar__photo { width: 34px; height: 34px; flex: none; border-radius: 10px; object-fit: cover; }
 .bar__name { font: 600 17px/1 var(--sans); letter-spacing: -.02em; white-space: nowrap; }
-/* nav, status, social links and the theme switch live in one wrapper: on wide screens it dissolves
+/* nav, status and social links live in one wrapper: on wide screens it dissolves
    into the bar's row; on narrow ones it becomes the drop-down panel behind the menu button */
 .bar__panel { display: contents; }
 .bar__nav { display: flex; }
@@ -156,7 +126,7 @@ main { display: grid; gap: 10px; }
 .bar__nav a[aria-current] { color: var(--ink); }
 .bar__status { display: none; align-items: center; gap: 8px; margin-left: auto; padding: 0 18px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; color: var(--body); }
 .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--rust); box-shadow: 0 0 0 3px rgba(217, 129, 78, .22); flex: none; }
-.bar__links { display: flex; align-items: center; gap: 2px; margin: 0 8px 0 auto; }
+.bar__links { display: flex; align-items: center; gap: 2px; margin: 0 12px 0 auto; }
 .bar__links a { display: flex; align-items: center; justify-content: center; gap: 7px; width: 38px; height: 38px; border-radius: 999px; color: var(--body); text-decoration: none; transition: background-color .15s, color .15s, border-color .15s; }
 .bar__links a:hover { background: var(--paper-2); color: var(--ink); }
 .bar__links svg { width: 18px; height: 18px; flex: none; }
@@ -165,12 +135,6 @@ main { display: grid; gap: 10px; }
 .bar__cv a { width: auto; padding: 0 14px 0 11px; border: 1px solid var(--rule); color: var(--ink); }
 .bar__cv a:hover { background: var(--ink); border-color: var(--ink); color: var(--paper-2); }
 .bar__cv .bar__lbl { position: static; width: auto; height: auto; overflow: visible; clip-path: none; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; }
-.bar__theme { align-self: center; display: grid; place-items: center; flex: none; width: 40px; height: 40px; margin-right: 10px; border: 1px solid var(--rule); border-radius: 50%; color: var(--ink); transition: background-color .15s, color .15s, border-color .15s; }
-.bar__theme:hover { background: var(--ink); border-color: var(--ink); color: var(--paper-2); }
-.bar__theme svg { width: 18px; height: 18px; }
-.bar__theme .i-moon, :root[data-theme="light"] .bar__theme .i-sun { display: none; }
-:root[data-theme="light"] .bar__theme .i-moon { display: block; }
-html:not(.js) .bar__theme { display: none; }
 .bar__menu { display: none; }
 .bar__cta { align-self: center; display: inline-flex; align-items: center; gap: 8px; min-height: 40px; margin-right: clamp(14px, 2vw, 28px); padding: 0 15px; border: 1px solid var(--rule); border-radius: 999px; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; color: var(--ink); white-space: nowrap; transition: background-color .15s, color .15s, border-color .15s; }
 .bar__cta:hover { background: var(--ink); border-color: var(--ink); color: var(--paper-2); }
@@ -673,7 +637,6 @@ html:not(.js) [data-plate] .plate__frame + .plate__frame { border-radius: 0; }
   .bar__cv { margin-left: 6px; }
   .bar__cv a { width: auto; padding: 0 16px 0 12px; border: 1px solid var(--rule); color: var(--ink); }
   .bar__cv .bar__lbl { position: static; width: auto; height: auto; overflow: visible; clip-path: none; }
-  .bar__theme { width: 44px; height: 44px; margin: 0; }
   /* without JavaScript there is no menu button: the panel is simply a second row */
   html:not(.js) .bar { flex-wrap: wrap; }
   html:not(.js) .bar__menu { display: none; }
@@ -712,6 +675,6 @@ html:not(.js) [data-plate] .plate__frame + .plate__frame { border-radius: 0; }
 @media print {
   body { background: #fff; }
   .sheet { width: 100%; margin: 0; box-shadow: none; }
-  .skip, .colophon, .bar__menu, .bar__theme { display: none; }
+  .skip, .colophon, .bar__menu { display: none; }
   .js [data-reveal] { opacity: 1; transform: none; }
 }

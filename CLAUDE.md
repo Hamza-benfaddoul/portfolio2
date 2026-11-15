@@ -33,10 +33,10 @@ so **pushing to `main` publishes the site**. Work on a branch and merge when it 
   `js` class the inline head script adds to `<html>`. Reveals fire once and never reset.
 - Respect `prefers-reduced-motion`: no idle animation, no auto-spin, no drawing effects.
 - Keep the section ids `about`, `experience`, `skill`, `portfolio`, `contact`.
-- Colours go through the tokens at the top of `site.css`. Dark is the default theme; light
-  overrides the same tokens under `:root[data-theme="light"]`. Text on yellow or orange is
-  `--dark`; text on `--ink` chips is `--on-ink`; text on the accent is `--on-accent`.
-- The route panel (`.hud`) stays dark in both themes on purpose; it uses the `--hud-*` tokens.
+- Colours go through the tokens at the top of `site.css`. The site is dark only (a light
+  theme was tried and removed at Hamza's request). Text on yellow or orange is `--dark`;
+  text on `--ink` chips is `--on-ink`; text on the accent is `--on-accent`.
+- The route panel (`.hud`) uses its own `--hud-*` tokens.
 - The top bar is sticky. Its breakpoints are 1560, 1239, 1079 (compact, menu button), 459, 399
   and 349px — re-measure it at each one after changing anything inside it.
 
@@ -69,7 +69,7 @@ node tools/shot.mjs index.html /tmp/shots --selector ".hud" --scale 2 --name map
 
 Each run prints a JSON report: horizontal overflow and its offenders, console errors, failed
 requests, broken images. All of them must be clean. Open the JPEGs it writes and look at them.
-Check both themes (click `[data-theme-toggle]` with `--eval`) and widths from 320 to 1600px.
+Check widths from 320 to 1600px.
 
 After changing the hero, regenerate the social preview from it:
 

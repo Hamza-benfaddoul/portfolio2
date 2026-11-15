@@ -9,24 +9,6 @@
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var hasIO = 'IntersectionObserver' in window;
 
-  /* ---------- 0. Theme: dark by default, light on request; the choice is remembered ---------- */
-  var themeBtn = $('[data-theme-toggle]'), themeMeta = $('meta[name="theme-color"]');
-  var paint = function (light) {
-    if (light) d.documentElement.setAttribute('data-theme', 'light'); else d.documentElement.removeAttribute('data-theme');
-    if (themeMeta) themeMeta.setAttribute('content', light ? '#E2DDCF' : '#0F0F10');
-    if (themeBtn) themeBtn.setAttribute('aria-label', light ? 'Switch to dark theme' : 'Switch to light theme');
-  };
-  paint(d.documentElement.getAttribute('data-theme') === 'light');   // the inline head script already applied a saved choice
-  if (themeBtn) themeBtn.addEventListener('click', function () {
-    var light = d.documentElement.getAttribute('data-theme') !== 'light';
-    if (!reduce) {
-      d.documentElement.classList.add('is-theming');
-      setTimeout(function () { d.documentElement.classList.remove('is-theming'); }, 320);
-    }
-    paint(light);
-    try { localStorage.setItem('theme', light ? 'light' : 'dark'); } catch (e) {}
-  });
-
   /* ---------- 1. Reveals: fire once, never reset ---------- */
   var reveals = $$('[data-reveal]');
   if (!hasIO || reduce) {
